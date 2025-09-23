@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PRANKS — Главная</title>
+  <style>
+    :root {
+      --bg: #000000;
+      --text: #e6e6e6;
+      --muted: #bdbdbd;
+      --accent: #ff0000;
+      --max-width: 900px;
+      --font-sans: monospace, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; text-shadow: none !important; box-shadow: none !important; transition: none !important; animation: none !important; }
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: var(--accent); }
+    a:hover { color: #fff; }
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+    }
+    .main-image {
+      display: block;
+      max-width: 300px;
+      width: 80%;
+      height: auto;
+      margin: 0 auto 20px auto;
+      border-radius: 0;
+      border: none;
+    }
+    .pranks-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .cta {
+      color: var(--accent);
+      background: none;
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      margin-top: 12px;
+      display: inline-block;
+    }
+    .cta:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+    @media (max-width:720px){
+      .main-image { max-width: 200px; }
+      .pranks-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <img id="mainImage" src="https://i.postimg.cc/xT5wfz77/photo-2025-09-12-09-11-20.jpg" alt="center image" class="main-image">
+    <h1 class="pranks-title">PRANKS</h1>
+    <p style="color: var(--muted); font-weight: 600;">Choose your daily prank!</p>
+    <a href="pranks.html" class="cta">Перейти к пранкам</a>
+
+    <footer>
+      <div style="color: var(--accent); font-weight: 700;">Контакты: telegram: @eqapo discord: jwke</div>
+      <div style="margin-top:6px; font-size:12px;">За фейк продавов моих услуг представляясь мной не ручаюсь</div>
+    </footer>
+  </div>
+</body>
+</html>

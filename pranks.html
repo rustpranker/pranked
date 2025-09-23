@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PRANKS — Выбор пранка</title>
+  <style>
+    :root {
+      --bg: #000;
+      --text: #e6e6e6;
+      --muted: #bdbdbd;
+      --accent: #ff0000;
+      --max-width: 900px;
+      --font-sans: monospace, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; text-shadow:none !important; box-shadow:none !important; transition:none !important; animation:none !important; }
+    html, body { background: var(--bg); color: var(--text); font-family: var(--font-sans); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: #fff; }
+    .wrap { max-width: var(--max-width); margin: 20px auto; padding: 20px; text-align: center; }
+    h1 { color: var(--accent); font-size: 2.5rem; text-transform: uppercase; margin-bottom: 20px; }
+    .accordion { list-style:none; padding:0; margin:0; }
+    .item { border: 1px solid rgba(255,0,0,0.3); border-radius:8px; margin:10px 0; overflow:hidden; }
+    .item button {
+      width:100%; background:none; border:none; padding:14px 20px; font-weight:700; font-size:18px; text-align:left; color:var(--accent); cursor:pointer; display:flex; justify-content:space-between; align-items:center;
+    }
+    .item button:hover { background: rgba(255,0,0,0.05); }
+    .panel { display:none; padding:14px 20px; color: var(--muted); text-align:left; }
+    .cta { display:inline-block; margin-top:20px; padding:8px 16px; border:1px solid rgba(255,0,0,0.3); border-radius:8px; color:var(--accent); text-decoration:none; font-weight:600; }
+    .cta:hover { background: var(--accent); color:#000; border-color: var(--accent); }
+    footer { margin-top:40px; font-size:13px; color: var(--muted); text-align:center; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Выбор пранка</h1>
+    <ul class="accordion">
+      <li class="item">
+        <button aria-expanded="false">DDOS <span>+</span></button>
+        <div class="panel">Положим жертве интернет, положим сайт, все что вам надо. Заставим думать о последствиях в интернете!</div>
+      </li>
+      <li class="item">
+        <button aria-expanded="false">PRANKS <span>+</span></button>
+        <div class="panel">Телефонные пранки — фирменная услуга. Разные категории звонков, Минирование любых заведений, заказы чего либо на адрес, вызов проституток, пранки хачами и многое другое! Все зависит от ваших пожеланий и от цены.</div>
+      </li>
+      <li class="item">
+        <button aria-expanded="false">DEANON <span>+</span></button>
+        <div class="panel">Докс любых соц сетей. Найдем любую информацию которую вам надо с той, которая есть, ценой не обидим ).</div>
+      </li>
+      <li class="item">
+        <button aria-expanded="false">KILLING <span>+</span></button>
+        <div class="panel">Тотальное унижение жертвы, в услугу входит все что перечислено выше, каждый день по 5 разных пранков! Простыми словами выпнем жертву с интернета.</div>
+      </li>
+      <li class="item">
+        <button aria-expanded="false">HACKING <span>+</span></button>
+        <div class="panel">Взломаем сайт, дискорд аккаунт (наход 3 частей токена) и заставим жертву страдать.</div>
+      </li>
+    </ul>
+
+    <a href="instruction.html" class="cta">Инструкция</a>
+
+    <footer>
+      <div style="color: var(--accent); font-weight:700;">Контакты: telegram: @eqapo discord: jwke</div>
+      <div style="margin-top:6px; font-size:12px;">За скам и фейк услуги не ручаюсь!</div>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll('.accordion .item button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const panel = btn.nextElementSibling;
+        const opened = panel.style.display==='block';
+        document.querySelectorAll('.accordion .panel').forEach(p=>p.style.display='none');
+        document.querySelectorAll('.accordion button').forEach(b=>b.setAttribute('aria-expanded','false'));
+        if(!opened){panel.style.display='block'; btn.setAttribute('aria-expanded','true');}
+      });
+    });
+  </script>
+</body>
+</html>
