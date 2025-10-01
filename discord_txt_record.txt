@@ -1,0 +1,43 @@
+# DNS TXT record for Discord verification
+# Site: pranking.rf.gd
+# Record name (host): _discord.pranking.rf.gd
+# Type: TXT
+# Value (content): dh=3245fd814158747e0c24f684533bf87fc4c5f206
+# Recommended TTL: 3600
+
+# --- Common formats you can copy/paste ---
+
+# 1) Full FQDN (BIND-style / zone file)
+_discord.pranking.rf.gd. 3600 IN TXT "dh=3245fd814158747e0c24f684533bf87fc4c5f206"
+
+# 2) Relative name in your pranking.rf.gd zone file (BIND)
+_discord 3600 IN TXT "dh=3245fd814158747e0c24f684533bf87fc4c5f206"
+
+# 3) cPanel / DNS manager field values
+# Host/Name: _discord.pranking.rf.gd
+# Type: TXT
+# TTL: 3600
+# Value: dh=3245fd814158747e0c24f684533bf87fc4c5f206
+
+# 4) Some DNS GUIs expect just the left-hand label:
+# Host/Name: _discord
+# Type: TXT
+# Value: dh=3245fd814158747e0c24f684533bf87fc4c5f206
+
+# 5) Example using `nsupdate` (dynamic update)
+# Replace <DNS_SERVER> and adjust zone if needed.
+# echo commands below to nsupdate:
+# server <DNS_SERVER>
+# zone pranking.rf.gd
+# update add _discord.pranking.rf.gd. 3600 TXT "dh=3245fd814158747e0c24f684533bf87fc4c5f206"
+# send
+
+# 6) Quick verification command once record is added:
+# (may take up to TTL or DNS propagation time)
+# dig +short TXT _discord.pranking.rf.gd
+
+# NOTES:
+# - Some control panels strip surrounding quotes; include them only if required.
+# - If your DNS host asks for the "Name" without the domain, use `_discord`.
+# - Wait a few minutes (sometimes up to an hour) and run the dig command to verify.
+
