@@ -71,15 +71,108 @@
       color: var(--muted);
       text-align: center;
     }
+
+    /* Красная кнопка справа вверху */
+    .info-btn {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      background: var(--accent);
+      color: #fff;
+      border: 0;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      z-index: 1200;
+      box-shadow: 0 6px 18px rgba(255,0,0,0.12), 0 2px 6px rgba(0,0,0,0.6);
+    }
+    .info-btn:active { transform: translateY(1px); }
+
+    /* Модал / меню в стиле сайта */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1100;
+      padding: 20px;
+    }
+    .modal {
+      width: 100%;
+      max-width: 720px;
+      background: #0b0b0b;
+      border: 1px solid rgba(255,0,0,0.12);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: left;
+      color: var(--text);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .modal-title {
+      color: var(--accent);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 1.05rem;
+    }
+    .modal-close {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.04);
+      padding: 6px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .menu {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .menu button {
+      background: none;
+      border: 1px solid rgba(255,0,0,0.18);
+      color: var(--accent);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .menu button.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .content {
+      background: rgba(255,255,255,0.02);
+      padding: 12px;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      min-height: 86px;
+    }
     @media (max-width:720px){
       .main-image { max-width: 200px; }
       .pranks-title { font-size: 2rem; }
+      .modal { padding: 16px; }
     }
   </style>
 </head>
 <body>
+  <button class="info-btn" id="openMenuBtn">Что за пранки ?</button>
+
   <div class="wrap">
-    <img id="mainImage" src="https://i.ibb.co/zV73jg4K/IMG-20230905-213642.jpg">
+    <img id="mainImage" class="main-image" src="https://i.ibb.co/zV73jg4K/IMG-20230905-213642.jpg" alt="main">
     <h1 class="pranks-title">PRANKS - COMEBACK</h1>
     <p style="color: var(--muted); font-weight: 600;">Mirrors: pranked.rf.gd / prank.gt.tc</p>
     <a href="pranks.html" class="cta">Перейти к пранкам</a>
@@ -89,11 +182,82 @@
       <div style="margin-top:6px; font-size:12px;">ДИСКЛЕЙМЕР ДЛЯ ГУГЛА: Данный сайт ничего не продает и создавался исключительно в развлекательных целях не неся никакого вреда никому.</div>
     </footer>
   </div>
+
+  <!-- Модал -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div id="modalTitle" class="modal-title">Что за пранки ?</div>
+        <button class="modal-close" id="closeModalBtn">Закрыть</button>
+      </div>
+
+      <div class="menu" role="tablist" aria-label="Выбор информации">
+        <button data-key="q1" class="active">Что такое пранки?</button>
+        <button data-key="q2">Кто делает пранки?</button>
+        <button data-key="q3">Я могу попасть на работу?</button>
+      </div>
+
+      <div class="content" id="modalContent">
+        <!-- начальный текст -->
+        Пранки - один из видов расправы над жертвой или твоим обидчиком. Отличаеться по цене и жесткости но все выполняеться в высшем качестве ! :)
+      </div>
+
+      <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+        <div style="color:var(--muted); font-size:13px;">
+          Контакты: discord: npank. <br>
+          ДИСКЛЕЙМЕР: Данный сайт создавался исключительно в развлекательных целях.
+        </div>
+        <a href="pranks.html" class="cta" style="margin-left:auto;">Открыть полный раздел</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const openBtn = document.getElementById('openMenuBtn');
+      const backdrop = document.getElementById('modalBackdrop');
+      const closeBtn = document.getElementById('closeModalBtn');
+      const menuButtons = Array.from(document.querySelectorAll('.menu button'));
+      const content = document.getElementById('modalContent');
+
+      const texts = {
+        q1: 'Пранки - один из видов расправы над жертвой или твоим обидчиком. Отличаеться по цене и жесткости но все выполняеться в высшем качестве ! :)',
+        q2: 'Пранками занимаеться наша группа под названием PH CLVN. Создатель этого всего - Костя ржавый. Человек владеющий контрактами с такими проэктами как doxbin, discord tracker, hydra и так далее. Поэтому проблем со скамом или некачественным выполнением услуг - возникнуть не должно',
+        q3: 'Конечно ! Вы можете заниматься очисткой интернета от биомусора в комьюнити либо просто от гнилых людей. Связывайтесь по этой почте: jakewantedcrowqk@outlook.com'
+      };
+
+      function openModal(){
+        backdrop.style.display = 'flex';
+        backdrop.setAttribute('aria-hidden', 'false');
+        // focus management
+        closeBtn.focus();
+      }
+      function closeModal(){
+        backdrop.style.display = 'none';
+        backdrop.setAttribute('aria-hidden', 'true');
+        openBtn.focus();
+      }
+
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', function(e){
+        if (e.target === backdrop) closeModal();
+      });
+
+      menuButtons.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          menuButtons.forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+          const key = btn.getAttribute('data-key');
+          content.textContent = texts[key] || '';
+        });
+      });
+
+      // Esc to close
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && backdrop.style.display === 'flex') closeModal();
+      });
+    })();
+  </script>
 </body>
 </html>
-
-
-
-
-
-
